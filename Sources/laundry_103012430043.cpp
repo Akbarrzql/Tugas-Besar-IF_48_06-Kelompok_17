@@ -5,4 +5,4 @@
 //  Created by Akbar Rizqullah on 28/11/25.
 //
 
-#include "Laundry.hpp"
+#include "Laundry.h"
