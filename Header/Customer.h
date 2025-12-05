@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 typedef struct elmList_Customer *addressCustomer;
 
 struct Customer {

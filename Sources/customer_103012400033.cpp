@@ -1,13 +1,5 @@
 #include "../Header/Customer.h"
 
-void createListCustomer(listCustomer &L);
-bool isEmptyCustomer(listCustomer L);
-addressCustomer createElemenCustomer(Customer data);
-
-void insertFirstCustomer(listCustomer &L, addressCustomer P);
-void insertLastCustomer(listCustomer &L, addressCustomer P);
-void insertAfterCustomer_103012430046(listCustomer &L, addressCustomer Prec, addressCustomer P);
-
 void deleteFirstCustomer(listCustomer &L, addressCustomer &P){
     if (L.first != nullptr) {
 
@@ -75,7 +67,6 @@ void printCustomer(listCustomer L){
     addressCustomer P = L.first;
     if (P == nullptr) {
         cout << "Data customer tidak ditemukan!" << endl;
-        return;
     }
 
     cout << "\n===== DATA CUSTOMER =====" << endl;

@@ -1,12 +1,5 @@
 #include "../Header/Laundry.h"
 
-addressLaundry createElemenLaundry(Laundry x);
-bool isEmptyLaundry(addressCustomer C);
-
-void insertFirstLaundry(addressCustomer &C, addressLaundry P);
-void insertLastLaundry(addressCustomer &C, addressLaundry P);
-void insertAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry P);
-
 void deleteFirstLaundry(addressCustomer &C, addressLaundry &P){
     if (C != nullptr && C->firstLaundry != nullptr) {
 
@@ -66,5 +59,3 @@ void deleteAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry 
     }
 }
 
-addressLaundry searchLaundry(addressCustomer C, string layanan);
-void printLaundry(addressCustomer C);
