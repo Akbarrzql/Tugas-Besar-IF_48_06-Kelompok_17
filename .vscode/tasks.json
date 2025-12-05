@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++17",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/main_admin.cpp",
+                "${workspaceFolder}/main_user.cpp",
+                "${workspaceFolder}/Sources/customer_103012400033.cpp",
+                "${workspaceFolder}/Sources/customer_103012430043.cpp",
+                "${workspaceFolder}/Sources/laundry_103012400033.cpp",
+                "${workspaceFolder}/Sources/laundry_103012430043.cpp",
+                "-o",
+                "${workspaceFolder}/main"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compile all C++ files for Tugas Besar"
+        }
+    ]
+}
