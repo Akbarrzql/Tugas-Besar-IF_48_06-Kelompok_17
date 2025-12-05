@@ -1,8 +1,11 @@
 #ifndef CUSTOMER_HPP
 #define CUSTOMER_HPP
 #include <string>
+#include <iostream>
 #include "../Header/Laundry.h" 
+
 using namespace std;
+
 
 typedef struct elmList_Customer *addressCustomer;
 
@@ -34,6 +37,7 @@ void insertAfterCustomer_103012430046(listCustomer &L, addressCustomer Prec, add
 void deleteFirstCustomer(listCustomer &L, addressCustomer &P);
 void deleteLastCustomer(listCustomer &L, addressCustomer &P);
 void deleteAfterCustomer(listCustomer &L, addressCustomer Prec, addressCustomer &P);
+void deleteAllLaundry(addressCustomer C);
 
 addressCustomer searchCustomer(listCustomer L, string nama);
 void printCustomer(listCustomer L);

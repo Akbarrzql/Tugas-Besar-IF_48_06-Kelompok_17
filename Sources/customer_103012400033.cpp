@@ -59,4 +59,27 @@ void deleteAfterCustomer(listCustomer &L, addressCustomer Prec, addressCustomer 
     }
 }
 
-addressCustomer searchCustomer(listCustomer L, string nama);
+addressCustomer searchCustomer(listCustomer L, string nama){
+    addressCustomer P = L.first;
+
+    while (P != nullptr) {
+        if (P->info.name == nama) {
+            return P; 
+        }
+        P = P->next;
+    }
+
+    return nullptr; 
+}
+void printCustomer(listCustomer L){
+    addressCustomer P = L.first;
+    if (P == nullptr) {
+        cout << "Data customer tidak ditemukan!" << endl;
+        return;
+    }
+
+    cout << "\n===== DATA CUSTOMER =====" << endl;
+    cout << "Nama         : " << P->info.name << endl;
+    cout << "No. Telepon  : " << P->info.noTlp << endl;
+    cout << "Alamat       : " << P->info.alamat << endl;
+}
