@@ -15,7 +15,7 @@ struct Customer {
 struct elmList_Customer {
     Customer info;
     addressCustomer next;
-    addressLaundry child;   
+    addressLaundry firstLaundry;   
 };
 
 struct listCustomer {
