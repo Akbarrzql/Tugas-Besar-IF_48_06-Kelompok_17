@@ -1,3 +1,4 @@
+/*
 #ifndef LAUNDRY_HPP
 #define LAUNDRY_HPP
 #include <string>
@@ -37,3 +38,4 @@ addressLaundry searchLaundry(addressCustomer C, string layanan);
 void printLaundry(addressCustomer C);
 
 #endif
+*/

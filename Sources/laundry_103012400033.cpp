@@ -1,4 +1,4 @@
-#include "../Header/Laundry.h"
+#include "../Header/header.h"
 
 void deleteFirstLaundry(addressCustomer &C, addressLaundry &P){
     if (C != nullptr && C->firstLaundry != nullptr) {
