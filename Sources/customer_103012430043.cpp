@@ -113,7 +113,7 @@ void tampilkanCustomerByLayanan(listCustomer L, string layanan) {
                     cout << "      Nama Pakaian : " << l->info.name << endl;
                     cout << "      Berat (kg)   : " << l->info.beratPakaian << endl;
                     cout << "      Harga        : Rp" << l->info.harga << endl;
-                    cout << "      Jenis Pakaian: " << l->info.jenisPakaian << endl;
+                    cout << "      Jumlah Pakaian: " << l->info.jumlahPakaian << endl;
                     cout << "   ........................................" << endl;
                 }
                 l = l->next;
