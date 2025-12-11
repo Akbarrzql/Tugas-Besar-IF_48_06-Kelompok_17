@@ -50,3 +50,82 @@ void insertAfterCustomer_103012430046(listCustomer &L, addressCustomer Prec, add
         Prec->next = P;
     }
 }
+
+int hitungTotalPendapatan(listCustomer L) {
+    int totalPendapatan = 0;
+    addressCustomer c;
+    c = L.first;
+    
+    while (c != nullptr) {
+        addressLaundry l;
+        l = c->firstLaundry;
+        
+        while (l != nullptr) {
+            totalPendapatan += l->info.harga;
+            l = l->next;
+        }
+        
+        c = c->next;
+    }
+    
+    return totalPendapatan;
+}
+
+void tampilkanCustomerByLayanan(listCustomer L, string layanan) {
+    addressCustomer c;
+    c = L.first;
+    bool ditemukan = false;
+    int nomorCustomer = 1;
+    
+    cout << "\n===== CUSTOMER DENGAN LAYANAN: " << layanan << " =====" << endl;
+    cout << "========================================================" << endl;
+    
+    while (c != nullptr) {
+        addressLaundry l;
+        l = c->firstLaundry;
+        bool customerPunyaLayanan = false;
+        int jumlahLayanan = 0;
+        
+        while (l != nullptr) {
+            if (l->info.layanan == layanan) {
+                customerPunyaLayanan = true;
+                jumlahLayanan++;
+            }
+            l = l->next;
+        }
+        
+        if (customerPunyaLayanan) {
+            ditemukan = true;
+            cout << "\nCustomer #" << nomorCustomer++ << endl;
+            cout << "Nama         : " << c->info.name << endl;
+            cout << "No. Telepon  : " << c->info.noTlp << endl;
+            cout << "Alamat       : " << c->info.alamat << endl;
+            cout << "Jumlah pakaian dengan layanan " << layanan << ": " << jumlahLayanan << endl;
+            
+            cout << "\nDetail Pakaian dengan Layanan " << layanan << ":" << endl;
+            cout << "----------------------------------------" << endl;
+            
+            l = c->firstLaundry;
+            int idx = 1;
+            while (l != nullptr) {
+                if (l->info.layanan == layanan) {
+                    cout << "   Pakaian #" << idx++ << endl;
+                    cout << "      Nama Pakaian : " << l->info.name << endl;
+                    cout << "      Berat (kg)   : " << l->info.beratPakaian << endl;
+                    cout << "      Harga        : Rp" << l->info.harga << endl;
+                    cout << "      Jenis Pakaian: " << l->info.jenisPakaian << endl;
+                    cout << "   ........................................" << endl;
+                }
+                l = l->next;
+            }
+            cout << "========================================================" << endl;
+        }
+        
+        c = c->next;
+    }
+    
+    if (!ditemukan) {
+        cout << "Tidak ada customer yang menggunakan layanan '" << layanan << "'." << endl;
+        cout << "========================================================" << endl;
+    }
+}
