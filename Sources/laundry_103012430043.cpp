@@ -54,18 +54,20 @@ void insertAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry 
 }
 
 addressLaundry searchLaundry(addressCustomer C, string layanan){
-    addressLaundry P;
-    P = C->firstLaundry;
     if (C == nullptr){
         cout << "Tidak ada nama customer" << endl;
-    } else {
-        while (P != nullptr) {
-            if (P->info.layanan == layanan) {
-                cout << P << endl;
-            }
-            P = P->next;
-        }
+        return nullptr;
     }
+
+    addressLaundry P = C->firstLaundry;
+    while (P != nullptr) {
+        if (P->info.layanan == layanan) {
+            return P;
+        }
+        P = P->next;
+    }
+
+    return nullptr;
 }
 
 void printLaundry(addressCustomer C){
@@ -88,10 +90,27 @@ void printLaundry(addressCustomer C){
             cout << "      Berat (kg)   : " << P->info.beratPakaian << endl;
             cout << "      Layanan      : " << P->info.layanan << endl;
             cout << "      Harga        : Rp" << P->info.harga << endl;
-            cout << "      Jenis Pakaian: " << P->info.jenisPakaian << endl;
+            cout << "      Jumlah Pakaian: " << P->info.jumlahPakaian << endl;
             cout << "   ----------------------------------------" << endl;
 
             P = P->next;
         }
+    }
+}
+
+void deleteAllLaundry(addressCustomer C) {
+    addressLaundry P;
+    addressLaundry temp;
+    P = C->firstLaundry;
+    if (C == nullptr) {
+        cout << "Data customer untuk laundry tidak ditemukan." << endl;
+    }else{
+        while (P != nullptr) {
+            temp = P;
+            P = P->next;
+            delete temp;
+        }   
+    
+        C->firstLaundry = nullptr;
     }
 }
