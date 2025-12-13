@@ -79,11 +79,11 @@ void printLaundry(addressCustomer C);
 int hitungTotalPendapatan(listCustomer L);
 void tampilkanCustomerByLayanan(listCustomer L, string layanan);
 // menampilakn laundry dengan layanan yang sama (syarat menampilkan semua data child secara unik)
-void menampilkanLaundryLayanan();
+void menampilkanLaundryLayanan(listCustomer C, string layanan);
 // mencari customer / laundry dengan layanan tertentu
-addressLaundry laundyByLayanan();
+addressLaundry laundryByLayanan(listCustomer L, string layanan);
 //total laundry yang selesai di tgl yang diketik (komputasi)
-int totalLaundrySelesai();
+int totalLaundrySelesai(listCustomer LC, string tgl);
 
 //bisa study case dengan tanggal yang di tambahin di child laundry
 /*
