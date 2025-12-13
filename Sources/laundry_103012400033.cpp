@@ -40,6 +40,7 @@ void deleteLastLaundry(addressCustomer &C, addressLaundry &P){
         P = nullptr;
     }
 }
+
 void deleteAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry &P){
     if (C != nullptr && Prec != nullptr && Prec->next != nullptr) {
 
@@ -59,3 +60,54 @@ void deleteAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry 
     }
 }
 
+void menampilkanLaundryLayanan(listCustomer L, string layanan) {
+
+    addressCustomer C = L.first;
+    while (C != nullptr) {
+        addressLaundry L = C->firstLaundry;
+        while (L != nullptr) {
+            if (L->info.layanan == layanan) {
+                cout << "Customer: " << C->info.name << endl;
+                cout << "Laundry: " << L->info.name 
+                     << " | Layanan: " << L->info.layanan
+                     << " | Berat: " << L->info.beratPakaian << endl;
+                cout << "--------------------------" << endl;
+            }
+            L = L->next;
+        }
+        C = C->next;
+    }
+}
+
+addressLaundry laundryByLayanan(listCustomer L, string layanan) {
+    addressCustomer C = L.first;
+    while (C != nullptr) {
+        addressLaundry L = C->firstLaundry;
+        while (L != nullptr) {
+            if (L->info.layanan == layanan) {
+                return L;
+            }
+            L = L->next;
+        }
+        C = C->next;
+    }
+    return nullptr;
+}
+
+int totalLaundrySelesai(listCustomer L, string tgl) {
+    int total = 0;
+
+    addressCustomer C = L.first;
+    while (C != nullptr) {
+        addressLaundry L = C->firstLaundry;
+        while (L != nullptr) {
+            if (L->info.tglSelesai == tgl) {
+                total++;
+            }
+            L = L->next;
+        }
+        C = C->next;
+    }
+
+    return total;
+}
