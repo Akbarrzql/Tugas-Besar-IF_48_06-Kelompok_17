@@ -85,6 +85,17 @@ addressLaundry laundyByLayanan();
 //total laundry yang selesai di tgl yang diketik (komputasi)
 int totalLaundrySelesai();
 
+//dua komputasi di child dan parent 
+
+//function main and menu
+void menuStudyCase(listCustomer &LC);
+void menuUser();
+void menuAdmin();
+void mainMenu();
+Customer inputCustomer();
+Laundry inputLaundry();
+
+
 //bisa study case dengan tanggal yang di tambahin di child laundry
 /*
 - sorting berdasarkan tanggal selesai terdekat
