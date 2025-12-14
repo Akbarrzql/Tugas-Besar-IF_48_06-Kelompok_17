@@ -89,9 +89,9 @@ int totalLaundrySelesai(listCustomer LC, string tgl);
 
 //function main and menu
 void menuStudyCase(listCustomer &LC);
-void menuUser();
-void menuAdmin();
-void mainMenu();
+void menuUser(listCustomer &LC);
+void menuAdmin(listCustomer &LC);
+void mainMenu(listCustomer &LC);
 Customer inputCustomer();
 Laundry inputLaundry();
 
