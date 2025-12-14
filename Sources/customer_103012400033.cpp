@@ -63,14 +63,19 @@ addressCustomer searchCustomer(listCustomer L, string nama){
 
     return nullptr; 
 }
-void printCustomer(listCustomer L){
-    addressCustomer P = L.first;
-    if (P == nullptr) {
-        cout << "Data customer tidak ditemukan!" << endl;
-    }
 
-    cout << "\n===== DATA CUSTOMER =====" << endl;
-    cout << "Nama         : " << P->info.name << endl;
-    cout << "No. Telepon  : " << P->info.noTlp << endl;
-    cout << "Alamat       : " << P->info.alamat << endl;
+void printCustomer(listCustomer L) {
+    if (isEmptyCustomer(L)) {
+        cout << "List customer kosong.\n";
+    } else {
+        addressCustomer P = L.first;
+        int i = 1;
+        while (P != nullptr) {
+            cout << "\nCustomer #" << i++ << endl;
+            cout << "Nama   : " << P->info.name << endl;
+            cout << "No Tlp : " << P->info.noTlp << endl;
+            cout << "Alamat : " << P->info.alamat << endl;
+            P = P->next;
+        }
+    }
 }

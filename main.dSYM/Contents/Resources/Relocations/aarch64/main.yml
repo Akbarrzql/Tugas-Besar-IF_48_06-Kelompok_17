@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     main
+binary-path:     '/Users/akbarrzql/Documents/Telkom University/Struktur Data/Tugas-Besar-IF_48_06-Kelompok_17/main'
 relocations:     []
 ...
