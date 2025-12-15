@@ -98,6 +98,60 @@ void printLaundry(addressCustomer C){
     }
 }
 
+//study kasus
+void insertLaundryByCustomer(listCustomer &LC) {
+    string nama;
+    cout << "Masukkan nama customer: ";
+    cin >> nama;
+
+    addressCustomer C = searchCustomer(LC, nama);
+    if (C == nullptr) {
+        cout << "Customer tidak ditemukan.\n";
+    } else {
+        Laundry L = inputLaundry();
+        addressLaundry P = createElemenLaundry(L);
+        insertLastLaundry(C, P);
+        cout << "Laundry berhasil ditambahkan.\n";
+    }
+}
+
+void deleteLaundryByService(listCustomer &LC) {
+    string layanan;
+    cout << "Masukkan layanan laundry: ";
+    cin >> layanan;
+
+    addressCustomer C = LC.first;
+    bool found = false;
+
+    while (C != nullptr) {
+        addressLaundry L = searchLaundry(C, layanan);
+        if (L != nullptr) {
+            deleteAfterLaundry(C, L->prev, L);
+            found = true;
+        }
+        C = C->next;
+    }
+
+    if (found)
+        cout << "Laundry dengan layanan " << layanan << " berhasil dihapus.\n";
+    else
+        cout << "Laundry tidak ditemukan.\n";
+}
+
+void printAllUniqueLaundry(listCustomer LC) {
+    addressCustomer C = LC.first;
+    cout << "\n=== DAFTAR LAYANAN UNIK ===\n";
+
+    while (C != nullptr) {
+        addressLaundry L = C->firstLaundry;
+        while (L != nullptr) {
+            cout << "- " << L->info.layanan << endl;
+            L = L->next;
+        }
+        C = C->next;
+    }
+}
+
 void deleteAllLaundry(addressCustomer C) {
     addressLaundry P;
     addressLaundry temp;

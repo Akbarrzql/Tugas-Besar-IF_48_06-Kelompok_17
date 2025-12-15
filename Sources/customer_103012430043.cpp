@@ -51,6 +51,24 @@ void insertAfterCustomer_103012430046(listCustomer &L, addressCustomer Prec, add
     }
 }
 
+//study kasus
+void insertCustomerByCondition(listCustomer &LC) {
+    Customer c = inputCustomer();
+    addressCustomer P = createElemenCustomer(c);
+
+    if (isEmptyCustomer(LC)) {
+        insertFirstCustomer(LC, P);
+    }
+    else {
+        if (c.name[0] == 'A' || c.name[0] == 'a')
+            insertFirstCustomer(LC, P);
+        else
+            insertLastCustomer(LC, P);
+    }
+
+    cout << "Customer berhasil ditambahkan berdasarkan kondisi.\n";
+}
+
 int hitungTotalPendapatan(listCustomer L) {
     int totalPendapatan = 0;
     addressCustomer c;
