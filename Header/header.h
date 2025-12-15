@@ -76,14 +76,16 @@ addressLaundry searchLaundry(addressCustomer C, string layanan);
 void printLaundry(addressCustomer C);
 
 //study case
+void insertCustomerByCondition(listCustomer &LC);
+void deleteCustomerByName(listCustomer &LC);
+void insertLaundryByCustomer(listCustomer &LC);
+void deleteLaundryByService(listCustomer &LC);
 int hitungTotalPendapatan(listCustomer L);
-void tampilkanCustomerByLayanan(listCustomer L, string layanan);
-// menampilakn laundry dengan layanan yang sama (syarat menampilkan semua data child secara unik)
-void menampilkanLaundryLayanan(listCustomer C, string layanan);
-// mencari customer / laundry dengan layanan tertentu
-addressLaundry laundryByLayanan(listCustomer L, string layanan);
-//total laundry yang selesai di tgl yang diketik (komputasi)
 int totalLaundrySelesai(listCustomer LC, string tgl);
+void printAllUniqueLaundry(listCustomer LC);
+void tampilkanCustomerByLayanan(listCustomer L, string layanan);
+void menampilkanLaundryLayanan(listCustomer C, string layanan);
+addressLaundry laundryByLayanan(listCustomer L, string layanan);
 
 //dua komputasi di child dan parent 
 
