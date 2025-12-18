@@ -10,14 +10,14 @@ typedef struct elmList_Laundry *addressLaundry;
 
 struct Customer {
     string name;
-    int noTlp;
+    string noTlp;
     string alamat;
     //ada wallet tambahan yang nantinya bisa di top up dan digunnakan untuk membayar laundry
 };
 
 struct Laundry {
     string name;
-    int noTlp;
+    string noTlp;
     string alamat;
     int beratPakaian;
     string layanan;
@@ -94,6 +94,7 @@ void menuStudyCase(listCustomer &LC);
 void menuUser(listCustomer &LC);
 void menuAdmin(listCustomer &LC);
 void mainMenu(listCustomer &LC);
+void printAllCustomerWithLaundry(listCustomer LC);
 Customer inputCustomer();
 Laundry inputLaundry();
 

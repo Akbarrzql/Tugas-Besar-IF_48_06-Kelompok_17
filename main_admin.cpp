@@ -4,7 +4,8 @@ using namespace std;
 
 listCustomer LC;
 
-Customer inputCustomer() {
+Customer inputCustomer()
+{
     Customer c;
     cout << "Nama Customer       : ";
     cin >> c.name;
@@ -15,7 +16,8 @@ Customer inputCustomer() {
     return c;
 }
 
-Laundry inputLaundry() {
+Laundry inputLaundry()
+{
     Laundry L;
     cout << "Nama Laundry        : ";
     cin >> L.name;
@@ -38,13 +40,15 @@ Laundry inputLaundry() {
     return L;
 }
 
-void menuAdmin(listCustomer &LC) {
+void menuAdmin(listCustomer &LC)
+{
     int pilih, pilih1, pilih2;
     string key;
 
     bool adminRunning = true;
 
-    while (adminRunning) {
+    while (adminRunning)
+    {
         cout << "\n===== MENU ADMIN =====\n";
         cout << "1. Menu Customer (Parent)\n";
         cout << "2. Menu Laundry (Child)\n";
@@ -52,20 +56,21 @@ void menuAdmin(listCustomer &LC) {
         cout << "Pilih [1-3]: ";
         cin >> pilih;
 
-        if (pilih == 1) {
+        if (pilih == 1)
+        {
             bool customerMenu = true;
 
-            while (customerMenu) {
+            while (customerMenu)
+            {
                 cout << "\n--- MENU CUSTOMER ---\n";
                 cout << "1. Insert Customer\n";
                 cout << "2. Delete Customer\n";
-                cout << "3. Print Customer\n";
-                cout << "4. Search Customer\n";
-                cout << "5. Kembali\n";
+                cout << "3. Kembali\n";
                 cout << "Pilih: ";
                 cin >> pilih1;
 
-                if (pilih1 == 1) {
+                if (pilih1 == 1)
+                {
                     cout << "\n1. Insert First\n";
                     cout << "2. Insert Last\n";
                     cout << "3. Insert After\n";
@@ -73,29 +78,36 @@ void menuAdmin(listCustomer &LC) {
                     cout << "Pilih: ";
                     cin >> pilih2;
 
-                    if (pilih2 == 1) {
+                    if (pilih2 == 1)
+                    {
                         addressCustomer P = createElemenCustomer(inputCustomer());
                         insertFirstCustomer(LC, P);
-                    } 
-                    else if (pilih2 == 2) {
+                    }
+                    else if (pilih2 == 2)
+                    {
                         addressCustomer P = createElemenCustomer(inputCustomer());
                         insertLastCustomer(LC, P);
-                    } 
-                    else if (pilih2 == 3) {
+                    }
+                    else if (pilih2 == 3)
+                    {
                         cout << "Masukkan nama customer sebelumnya: ";
                         cin >> key;
                         addressCustomer Prec = searchCustomer(LC, key);
 
-                        if (Prec != nullptr) {
+                        if (Prec != nullptr)
+                        {
                             addressCustomer P = createElemenCustomer(inputCustomer());
                             insertAfterCustomer_103012430046(LC, Prec, P);
-                        } else {
+                        }
+                        else
+                        {
                             cout << "Customer tidak ditemukan!\n";
                         }
                     }
                 }
 
-                else if (pilih1 == 2) {
+                else if (pilih1 == 2)
+                {
                     cout << "\n1. Delete First\n";
                     cout << "2. Delete Last\n";
                     cout << "3. Delete After\n";
@@ -105,70 +117,68 @@ void menuAdmin(listCustomer &LC) {
 
                     addressCustomer P = nullptr;
 
-                    if (pilih2 == 1){
+                    if (pilih2 == 1)
+                    {
                         deleteFirstCustomer(LC, P);
-                        if (P != nullptr) {
+                        if (P != nullptr)
+                        {
                             cout << "Customer dengan nama " << P->info.name << " telah dihapus.\n";
-                        } 
-                    } else if (pilih2 == 2) {
+                        }
+                    }
+                    else if (pilih2 == 2)
+                    {
                         deleteLastCustomer(LC, P);
-                        if (P != nullptr) {
+                        if (P != nullptr)
+                        {
                             cout << "Customer dengan nama " << P->info.name << " telah dihapus.\n";
-                        } 
-                    } else if (pilih2 == 3) {
+                        }
+                    }
+                    else if (pilih2 == 3)
+                    {
                         cout << "Masukkan nama customer sebelumnya: ";
                         cin >> key;
                         addressCustomer Prec = searchCustomer(LC, key);
-                        if (Prec != nullptr) deleteAfterCustomer(LC, Prec, P);
-                        if (P != nullptr) {
+                        if (Prec != nullptr)
+                            deleteAfterCustomer(LC, Prec, P);
+                        if (P != nullptr)
+                        {
                             cout << "Customer dengan nama " << P->info.name << " telah dihapus.\n";
-                        } 
+                        }
                     }
                 }
 
-                else if (pilih1 == 3) {
-                    printCustomer(LC);
-                }
-
-                else if (pilih1 == 4) {
-                    cout << "Masukkan nama customer: ";
-                    cin >> key;
-                    addressCustomer C = searchCustomer(LC, key);
-                    if (C != nullptr)
-                        cout << "Customer ditemukan: " << C->info.name << endl;
-                    else
-                        cout << "Customer tidak ditemukan!\n";
-                }
-
-                else if (pilih1 == 5) {
+                else if (pilih1 == 3)
+                {
                     customerMenu = false;
                 }
             }
         }
 
-        else if (pilih == 2) {
+        else if (pilih == 2)
+        {
             bool laundryMenu = true;
 
             cout << "\nMasukkan nama customer pemilik laundry: ";
             cin >> key;
             addressCustomer C = searchCustomer(LC, key);
 
-            if (C == nullptr) {
+            if (C == nullptr)
+            {
                 cout << "Customer tidak ditemukan!\n";
                 laundryMenu = false;
             }
 
-            while (laundryMenu) {
+            while (laundryMenu)
+            {
                 cout << "\n--- MENU LAUNDRY ---\n";
                 cout << "1. Insert Laundry\n";
                 cout << "2. Delete Laundry\n";
-                cout << "3. Print Laundry\n";
-                cout << "4. Search Laundry\n";
-                cout << "5. Kembali\n";
+                cout << "3. Kembali\n";
                 cout << "Pilih: ";
                 cin >> pilih1;
 
-                if (pilih1 == 1) {
+                if (pilih1 == 1)
+                {
                     cout << "1. Insert First\n";
                     cout << "2. Insert Last\n";
                     cout << "3. Insert After\n";
@@ -177,17 +187,22 @@ void menuAdmin(listCustomer &LC) {
 
                     addressLaundry P = createElemenLaundry(inputLaundry());
 
-                    if (pilih2 == 1) insertFirstLaundry(C, P);
-                    else if (pilih2 == 2) insertLastLaundry(C, P);
-                    else if (pilih2 == 3) {
+                    if (pilih2 == 1)
+                        insertFirstLaundry(C, P);
+                    else if (pilih2 == 2)
+                        insertLastLaundry(C, P);
+                    else if (pilih2 == 3)
+                    {
                         cout << "Masukkan layanan sebelumnya: ";
                         cin >> key;
                         addressLaundry Prec = searchLaundry(C, key);
-                        if (Prec != nullptr) insertAfterLaundry(C, Prec, P);
+                        if (Prec != nullptr)
+                            insertAfterLaundry(C, Prec, P);
                     }
                 }
 
-                else if (pilih1 == 2) {
+                else if (pilih1 == 2)
+                {
                     cout << "1. Delete First\n";
                     cout << "2. Delete Last\n";
                     cout << "3. Delete After\n";
@@ -196,35 +211,65 @@ void menuAdmin(listCustomer &LC) {
 
                     addressLaundry P = nullptr;
 
-                    if (pilih2 == 1) deleteFirstLaundry(C, P);
-                    else if (pilih2 == 2) deleteLastLaundry(C, P);
-                    else if (pilih2 == 3) {
+                    if (pilih2 == 1)
+                    {
+                        deleteFirstLaundry(C, P);
+                        if (P != nullptr)
+                        {
+                            cout << "Laundry dengan nama " << P->info.name << " telah dihapus." << "dan layanan " << P->info.layanan << "Telah dihapus.\n";
+                        }
+                    }
+                    else if (pilih2 == 2)
+                    {
+                        deleteLastLaundry(C, P);
+                        if (P != nullptr)
+                        {
+                            cout << "Laundry dengan nama " << P->info.name << " telah dihapus." << "dan layanan " << P->info.layanan << "Telah dihapus.\n";
+                        }
+                    }
+                    else if (pilih2 == 3)
+                    {
                         cout << "Masukkan layanan sebelumnya: ";
                         cin >> key;
+
                         addressLaundry Prec = searchLaundry(C, key);
-                        if (Prec != nullptr) deleteAfterLaundry(C, Prec, P);
+
+                        if (Prec == nullptr)
+                        {
+                            cout << "Laundry dengan layanan tersebut tidak ditemukan.\n";
+                        }
+
+                        else if (Prec->next == nullptr)
+                        {
+                            cout << "Tidak ada laundry setelah layanan '"
+                                 << Prec->info.layanan << "'.\n";
+                        }
+
+                        else
+                        {
+                            deleteAfterLaundry(C, Prec, P);
+
+                            if (P != nullptr)
+                            {
+                                cout << "Laundry dengan nama " << P->info.name
+                                     << " dan layanan " << P->info.layanan
+                                     << " telah dihapus.\n";
+                            }
+                        }
                     }
                 }
-
-                else if (pilih1 == 3) {
-                    printLaundry(C);
-                }
-
-                else if (pilih1 == 4) {
-                    cout << "Masukkan layanan laundry: ";
-                    cin >> key;
-                    addressLaundry L = searchLaundry(C, key);
-                    if (L != nullptr)
-                        cout << "Laundry ditemukan: " << L->info.layanan << endl;
-                    else
-                        cout << "Laundry tidak ditemukan!\n";
-                }else if (pilih1 == 5) {
+                else if (pilih1 == 3)
+                {
                     laundryMenu = false;
                 }
             }
-        }else if (pilih == 3) {
+        }
+        else if (pilih == 3)
+        {
             adminRunning = false;
-        } else {
+        }
+        else
+        {
             cout << "Pilihan tidak valid!\n";
         }
     }
