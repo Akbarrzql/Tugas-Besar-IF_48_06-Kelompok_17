@@ -42,23 +42,20 @@ void deleteLastLaundry(addressCustomer &C, addressLaundry &P){
 }
 
 void deleteAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry &P){
-    if (C != nullptr && Prec != nullptr && Prec->next != nullptr) {
-
+    if (Prec != nullptr && Prec->next != nullptr) {
         P = Prec->next;
-
         Prec->next = P->next;
-
         if (P->next != nullptr) {
             P->next->prev = Prec;
         }
-
         P->next = nullptr;
         P->prev = nullptr;
-
-    } else {
+    }
+    else {
         P = nullptr;
     }
 }
+
 
 void menampilkanLaundryLayanan(listCustomer L, string layanan) {
 

@@ -147,3 +147,46 @@ void tampilkanCustomerByLayanan(listCustomer L, string layanan) {
         cout << "========================================================" << endl;
     }
 }
+
+void printAllCustomerWithLaundry(listCustomer LC) {
+    if (LC.first == nullptr) {
+        cout << "Data customer masih kosong.\n";
+    }
+    else {
+        addressCustomer C = LC.first;
+        int i = 1;
+
+        cout << "\n===== DAFTAR CUSTOMER & LAUNDRY =====\n";
+
+        while (C != nullptr) {
+            cout << "\nCustomer #" << i++ << endl;
+            cout << "Nama   : " << C->info.name << endl;
+            cout << "No Tlp : " << C->info.noTlp << endl;
+            cout << "Alamat : " << C->info.alamat << endl;
+
+            addressLaundry L = C->firstLaundry;
+
+            if (L == nullptr) {
+                cout << "  >> Belum memiliki laundry\n";
+            }
+            else {
+                int j = 1;
+                cout << "  Daftar Laundry:\n";
+
+                while (L != nullptr) {
+                    cout << "  Laundry #" << j++ << endl;
+                    cout << "    Nama Pakaian : " << L->info.name << endl;
+                    cout << "    Layanan      : " << L->info.layanan << endl;
+                    cout << "    Berat        : " << L->info.beratPakaian << endl;
+                    cout << "    Harga        : Rp " << L->info.harga << endl;
+                    cout << "    Tgl Masuk    : " << L->info.tglMasuk << endl;
+                    cout << "    Tgl Selesai  : " << L->info.tglSelesai << endl;
+                    L = L->next;
+                }
+            }
+
+            cout << "--------------------------------------\n";
+            C = C->next;
+        }
+    }
+}

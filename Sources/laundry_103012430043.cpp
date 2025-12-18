@@ -100,43 +100,93 @@ void printLaundry(addressCustomer C){
 
 //study kasus
 void insertLaundryByCustomer(listCustomer &LC) {
-    string nama;
+    string namaCustomer;
     cout << "Masukkan nama customer: ";
-    cin >> nama;
+    cin >> namaCustomer;
 
-    addressCustomer C = searchCustomer(LC, nama);
+    addressCustomer C = searchCustomer(LC, namaCustomer);
+
     if (C == nullptr) {
         cout << "Customer tidak ditemukan.\n";
-    } else {
-        Laundry L = inputLaundry();
-        addressLaundry P = createElemenLaundry(L);
-        insertLastLaundry(C, P);
+    }
+    else {
+        Laundry data = inputLaundry();
+        addressLaundry P = createElemenLaundry(data);
+
+        if (C->firstLaundry == nullptr) {
+            insertFirstLaundry(C, P);
+        }
+        else {
+            if (data.layanan == "Express") {
+                insertFirstLaundry(C, P);
+            }
+            else {
+                addressLaundry L = C->firstLaundry;
+                addressLaundry prec = nullptr;
+
+                while (L != nullptr) {
+                    if (L->info.layanan == data.layanan) {
+                        prec = L;
+                    }
+                    L = L->next;
+                }
+
+                if (prec != nullptr) {
+                    insertAfterLaundry(C, prec, P);
+                }
+                else {
+                    insertLastLaundry(C, P);
+                }
+            }
+        }
+
         cout << "Laundry berhasil ditambahkan.\n";
     }
 }
 
+
 void deleteLaundryByService(listCustomer &LC) {
-    string layanan;
-    cout << "Masukkan layanan laundry: ";
-    cin >> layanan;
+    string namaCustomer;
+    cout << "Masukkan nama customer: ";
+    cin >> namaCustomer;
 
-    addressCustomer C = LC.first;
-    bool found = false;
+    addressCustomer C = searchCustomer(LC, namaCustomer);
 
-    while (C != nullptr) {
-        addressLaundry L = searchLaundry(C, layanan);
-        if (L != nullptr) {
-            deleteAfterLaundry(C, L->prev, L);
-            found = true;
-        }
-        C = C->next;
+    if (C == nullptr || C->firstLaundry == nullptr) {
+        cout << "Data tidak ditemukan.\n";
     }
+    else {
+        string layanan;
+        cout << "Masukkan layanan laundry yang dihapus: ";
+        cin >> layanan;
 
-    if (found)
-        cout << "Laundry dengan layanan " << layanan << " berhasil dihapus.\n";
-    else
-        cout << "Laundry tidak ditemukan.\n";
+        addressLaundry P = nullptr;
+
+        if (C->firstLaundry->info.layanan == layanan) {
+            deleteFirstLaundry(C, P);
+        }
+        else {
+            addressLaundry prec = C->firstLaundry;
+
+            while (prec->next != nullptr &&
+                   prec->next->info.layanan != layanan) {
+                prec = prec->next;
+            }
+
+            if (prec->next != nullptr) {
+                deleteAfterLaundry(C, prec, P);
+            }
+        }
+
+        if (P != nullptr) {
+            cout << "Laundry berhasil dihapus.\n";
+        }
+        else {
+            cout << "Laundry dengan layanan tersebut tidak ditemukan.\n";
+        }
+    }
 }
+
 
 void printAllUniqueLaundry(listCustomer LC) {
     addressCustomer C = LC.first;
