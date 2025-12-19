@@ -52,7 +52,7 @@ void deleteAfterCustomer(listCustomer &L, addressCustomer Prec, addressCustomer 
 }
 
 //study kasus
-void deleteCustomerByName(listCustomer &LC) {
+void deleteCustomerByLaundry(listCustomer &LC) {
     string nama;
     cout << "Masukkan nama customer yang dihapus: ";
     cin >> nama;
@@ -60,18 +60,39 @@ void deleteCustomerByName(listCustomer &LC) {
     addressCustomer P = nullptr;
 
     if (LC.first != nullptr && LC.first->info.name == nama) {
+        if (LC.first->firstLaundry != nullptr) {
+            cout << "Customer masih memiliki laundry. Tidak dapat dihapus.\n";
+            return;
+        }
+
         deleteFirstCustomer(LC, P);
-    } else {
-        addressCustomer prec = searchCustomer(LC, nama);
-        if (prec != nullptr)
+    }
+    else {
+        addressCustomer prec = LC.first;
+        while (prec != nullptr &&
+               prec->next != nullptr &&
+               prec->next->info.name != nama) {
+            prec = prec->next;
+        }
+
+        if (prec != nullptr && prec->next != nullptr) {
+            if (prec->next->firstLaundry != nullptr) {
+                cout << "Customer masih memiliki laundry. Tidak dapat dihapus.\n";
+                return;
+            }
+
             deleteAfterCustomer(LC, prec, P);
+        }
     }
 
-    if (P != nullptr)
-        cout << "Customer " << nama << " berhasil dihapus.\n";
-    else
+    if (P != nullptr) {
+        cout << "Customer '" << nama << "' berhasil dihapus.\n";
+    }
+    else {
         cout << "Customer tidak ditemukan.\n";
+    }
 }
+
 
 addressCustomer searchCustomer(listCustomer L, string nama){
     addressCustomer P = L.first;

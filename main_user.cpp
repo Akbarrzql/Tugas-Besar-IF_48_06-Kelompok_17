@@ -8,10 +8,10 @@ void menuStudyCase(listCustomer &LC) {
 
     while (run) {
         cout << "\n===== MENU STUDY CASE =====\n";
-        cout << "1. Insert Customer berdasarkan kondisi\n"; //studi kasus insert berdasarkan kondisi
-        cout << "2. Hapus Customer berdasarkan nama\n"; // studi kasus delete berdasarkan kondisi
-        cout << "3. Insert Laundry ke Customer\n"; //studi kasus insert laundry ke customer tertentu
-        cout << "4. Hapus Laundry berdasarkan layanan\n"; //studi kasus delete laundry berdasarkan layanan
+        cout << "1. Insert Customer berdasarkan jika nama customer sudah ada\n"; //studi kasus insert berdasarkan kondisi
+        cout << "2. Hapus Customer berdasarkan tidak ada laundry\n"; // studi kasus delete berdasarkan kondisi
+        cout << "3. Insert Laundry berdasarkan status pembayaran\n"; //studi kasus insert laundry ke customer tertentu
+        cout << "4. Hapus Laundry berdasarkan layanan yang selesai dan lunas\n"; //studi kasus delete laundry berdasarkan layanan
         cout << "5. Hitung Total Pendapatan (Komputasi)\n"; //menghitung total pendapatan dari semua laundry
         cout << "6. Hitung Total Laundry Selesai (Komputasi)\n"; //menghitung total laundry yang selesai pada tanggal tertentu
         cout << "7. Cari Customer berdasarkan nama\n"; // studi kasus mencari customer berdasarkan kondisi
@@ -27,11 +27,11 @@ void menuStudyCase(listCustomer &LC) {
         }
 
         else if (pilih == 2) {
-            deleteCustomerByName(LC);
+            deleteCustomerByLaundry(LC);
         }
 
         else if (pilih == 3) {
-            insertLaundryByCustomer(LC);
+            buatPesananLaundryLangsungBayar(LC);
         }
 
         else if (pilih == 4) {

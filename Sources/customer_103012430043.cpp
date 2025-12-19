@@ -54,20 +54,26 @@ void insertAfterCustomer_103012430046(listCustomer &L, addressCustomer Prec, add
 //study kasus
 void insertCustomerByCondition(listCustomer &LC) {
     Customer c = inputCustomer();
+
+    addressCustomer cek = searchCustomer(LC, c.name);
+    if (cek != nullptr) {
+        cout << "Customer dengan nama '" << c.name
+             << "' sudah terdaftar. Insert dibatalkan.\n";
+        return;
+    }
+
     addressCustomer P = createElemenCustomer(c);
 
     if (isEmptyCustomer(LC)) {
         insertFirstCustomer(LC, P);
     }
     else {
-        if (c.name[0] == 'A' || c.name[0] == 'a')
-            insertFirstCustomer(LC, P);
-        else
-            insertLastCustomer(LC, P);
+        insertLastCustomer(LC, P);
     }
 
-    cout << "Customer berhasil ditambahkan berdasarkan kondisi.\n";
+    cout << "Customer berhasil ditambahkan (data unik).\n";
 }
+
 
 int hitungTotalPendapatan(listCustomer L) {
     int totalPendapatan = 0;
@@ -90,20 +96,18 @@ int hitungTotalPendapatan(listCustomer L) {
 }
 
 void tampilkanCustomerByLayanan(listCustomer L, string layanan) {
-    addressCustomer c;
-    c = L.first;
+    addressCustomer c = L.first;
     bool ditemukan = false;
     int nomorCustomer = 1;
-    
-    cout << "\n===== CUSTOMER DENGAN LAYANAN: " << layanan << " =====" << endl;
-    cout << "========================================================" << endl;
-    
+
+    cout << "\n===== CUSTOMER DENGAN LAYANAN: " << layanan << " =====\n";
+    cout << "=====================================================\n";
+
     while (c != nullptr) {
-        addressLaundry l;
-        l = c->firstLaundry;
+        addressLaundry l = c->firstLaundry;
         bool customerPunyaLayanan = false;
         int jumlahLayanan = 0;
-        
+
         while (l != nullptr) {
             if (l->info.layanan == layanan) {
                 customerPunyaLayanan = true;
@@ -111,40 +115,44 @@ void tampilkanCustomerByLayanan(listCustomer L, string layanan) {
             }
             l = l->next;
         }
-        
+
         if (customerPunyaLayanan) {
             ditemukan = true;
             cout << "\nCustomer #" << nomorCustomer++ << endl;
-            cout << "Nama         : " << c->info.name << endl;
-            cout << "No. Telepon  : " << c->info.noTlp << endl;
-            cout << "Alamat       : " << c->info.alamat << endl;
-            cout << "Jumlah pakaian dengan layanan " << layanan << ": " << jumlahLayanan << endl;
-            
-            cout << "\nDetail Pakaian dengan Layanan " << layanan << ":" << endl;
-            cout << "----------------------------------------" << endl;
-            
+            cout << "Nama        : " << c->info.name << endl;
+            cout << "No. Telepon : " << c->info.noTlp << endl;
+            cout << "Alamat      : " << c->info.alamat << endl;
+            cout << "Jumlah laundry layanan '" << layanan
+                 << "' : " << jumlahLayanan << endl;
+
+            cout << "\nDetail Laundry:\n";
+            cout << "----------------------------------------\n";
+
             l = c->firstLaundry;
             int idx = 1;
             while (l != nullptr) {
                 if (l->info.layanan == layanan) {
-                    cout << "   Pakaian #" << idx++ << endl;
-                    cout << "      Nama Pakaian : " << l->info.name << endl;
+                    cout << "   Laundry #" << idx++ << endl;
                     cout << "      Berat (kg)   : " << l->info.beratPakaian << endl;
+                    cout << "      Jumlah       : " << l->info.jumlahPakaian << endl;
                     cout << "      Harga        : Rp" << l->info.harga << endl;
-                    cout << "      Jumlah Pakaian: " << l->info.jumlahPakaian << endl;
-                    cout << "   ........................................" << endl;
+                    cout << "      Status Bayar : " << l->info.statusBayar << endl;
+                    cout << "      Tgl Masuk    : " << l->info.tglMasuk << endl;
+                    cout << "      Tgl Selesai  : " << l->info.tglSelesai << endl;
+                    cout << "   ........................................\n";
                 }
                 l = l->next;
             }
-            cout << "========================================================" << endl;
+            cout << "=====================================================\n";
         }
-        
+
         c = c->next;
     }
-    
+
     if (!ditemukan) {
-        cout << "Tidak ada customer yang menggunakan layanan '" << layanan << "'." << endl;
-        cout << "========================================================" << endl;
+        cout << "Tidak ada customer yang menggunakan layanan '"
+             << layanan << "'.\n";
+        cout << "=====================================================\n";
     }
 }
 
@@ -175,12 +183,14 @@ void printAllCustomerWithLaundry(listCustomer LC) {
 
                 while (L != nullptr) {
                     cout << "  Laundry #" << j++ << endl;
-                    cout << "    Nama Pakaian : " << L->info.name << endl;
                     cout << "    Layanan      : " << L->info.layanan << endl;
-                    cout << "    Berat        : " << L->info.beratPakaian << endl;
-                    cout << "    Harga        : Rp " << L->info.harga << endl;
+                    cout << "    Berat (kg)   : " << L->info.beratPakaian << endl;
+                    cout << "    Jumlah       : " << L->info.jumlahPakaian << endl;
+                    cout << "    Harga        : Rp" << L->info.harga << endl;
+                    cout << "    Status Bayar : " << L->info.statusBayar << endl;
                     cout << "    Tgl Masuk    : " << L->info.tglMasuk << endl;
                     cout << "    Tgl Selesai  : " << L->info.tglSelesai << endl;
+                    cout << "    -----------------------------\n";
                     L = L->next;
                 }
             }
@@ -190,3 +200,4 @@ void printAllCustomerWithLaundry(listCustomer LC) {
         }
     }
 }
+

@@ -70,36 +70,38 @@ addressLaundry searchLaundry(addressCustomer C, string layanan){
     return nullptr;
 }
 
-void printLaundry(addressCustomer C){
-    addressLaundry P;
-    int idx;
-    P = C->firstLaundry;
-    idx = 1;
-    if (C == nullptr){
-        cout << "Customer tidak ditemukan." << endl;
-    }else if (P == nullptr){
-        cout << "   Tidak ada laundry terdaftar untuk customer " << C->info.name << "." << endl;
-    }else {
+void printLaundry(addressCustomer C) {
+    if (C == nullptr) {
+        cout << "Customer tidak ditemukan.\n";
+    }
+    else if (C->firstLaundry == nullptr) {
+        cout << "   Tidak ada laundry untuk customer "
+             << C->info.name << ".\n";
+    }
+    else {
+        addressLaundry P = C->firstLaundry;
+        int idx = 1;
+
         cout << "   Laundry milik: " << C->info.name << endl;
-        cout << "   ----------------------------------------" << endl;
+        cout << "   ----------------------------------------\n";
+
         while (P != nullptr) {
             cout << "   Laundry #" << idx++ << endl;
-            cout << "      Nama Pakaian : " << P->info.name << endl;
-            cout << "      No. Tlp      : " << P->info.noTlp << endl;
-            cout << "      Alamat       : " << P->info.alamat << endl;
-            cout << "      Berat (kg)   : " << P->info.beratPakaian << endl;
-            cout << "      Layanan      : " << P->info.layanan << endl;
-            cout << "      Harga        : Rp" << P->info.harga << endl;
-            cout << "      Jumlah Pakaian: " << P->info.jumlahPakaian << endl;
-            cout << "   ----------------------------------------" << endl;
-
+            cout << "      Layanan       : " << P->info.layanan << endl;
+            cout << "      Berat (kg)    : " << P->info.beratPakaian << endl;
+            cout << "      Jumlah        : " << P->info.jumlahPakaian << endl;
+            cout << "      Harga         : Rp" << P->info.harga << endl;
+            cout << "      Status Bayar  : " << P->info.statusBayar << endl;
+            cout << "      Tgl Masuk     : " << P->info.tglMasuk << endl;
+            cout << "      Tgl Selesai   : " << P->info.tglSelesai << endl;
+            cout << "   ----------------------------------------\n";
             P = P->next;
         }
     }
 }
 
 //study kasus
-void insertLaundryByCustomer(listCustomer &LC) {
+void buatPesananLaundryLangsungBayar(listCustomer &LC) {
     string namaCustomer;
     cout << "Masukkan nama customer: ";
     cin >> namaCustomer;
@@ -110,7 +112,23 @@ void insertLaundryByCustomer(listCustomer &LC) {
         cout << "Customer tidak ditemukan.\n";
     }
     else {
-        Laundry data = inputLaundry();
+        Laundry data;
+
+        cout << "Jenis Layanan       : ";
+        cin >> data.layanan;
+        cout << "Berat Pakaian (kg)  : ";
+        cin >> data.beratPakaian;
+        cout << "Jumlah Pakaian     : ";
+        cin >> data.jumlahPakaian;
+        cout << "Harga              : ";
+        cin >> data.harga;
+        cout << "Tanggal Masuk      : ";
+        cin >> data.tglMasuk;
+        cout << "Tanggal Selesai    : ";
+        cin >> data.tglSelesai;
+
+        data.statusBayar = "Lunas";
+
         addressLaundry P = createElemenLaundry(data);
 
         if (C->firstLaundry == nullptr) {
@@ -140,10 +158,9 @@ void insertLaundryByCustomer(listCustomer &LC) {
             }
         }
 
-        cout << "Laundry berhasil ditambahkan.\n";
+        cout << "Pesanan laundry berhasil dibuat dan langsung dibayar.\n";
     }
 }
-
 
 void deleteLaundryByService(listCustomer &LC) {
     string namaCustomer;
@@ -156,20 +173,28 @@ void deleteLaundryByService(listCustomer &LC) {
         cout << "Data tidak ditemukan.\n";
     }
     else {
-        string layanan;
-        cout << "Masukkan layanan laundry yang dihapus: ";
+        string layanan, tgl;
+        cout << "Masukkan layanan laundry  : ";
         cin >> layanan;
+        cout << "Masukkan tanggal selesai  : ";
+        cin >> tgl;
 
         addressLaundry P = nullptr;
 
-        if (C->firstLaundry->info.layanan == layanan) {
+        if (C->firstLaundry->info.layanan == layanan &&
+            C->firstLaundry->info.statusBayar == "Lunas" &&
+            C->firstLaundry->info.tglSelesai == tgl) {
+
             deleteFirstLaundry(C, P);
         }
         else {
             addressLaundry prec = C->firstLaundry;
 
             while (prec->next != nullptr &&
-                   prec->next->info.layanan != layanan) {
+                   !(prec->next->info.layanan == layanan &&
+                     prec->next->info.statusBayar == "Lunas" &&
+                     prec->next->info.tglSelesai == tgl)) {
+
                 prec = prec->next;
             }
 
@@ -180,9 +205,12 @@ void deleteLaundryByService(listCustomer &LC) {
 
         if (P != nullptr) {
             cout << "Laundry berhasil dihapus.\n";
+            cout << "Layanan       : " << P->info.layanan << endl;
+            cout << "Tanggal Selesai: " << P->info.tglSelesai << endl;
+            cout << "Status Bayar  : " << P->info.statusBayar << endl;
         }
         else {
-            cout << "Laundry dengan layanan tersebut tidak ditemukan.\n";
+            cout << "Laundry tidak ditemukan / belum lunas / tanggal tidak sesuai.\n";
         }
     }
 }

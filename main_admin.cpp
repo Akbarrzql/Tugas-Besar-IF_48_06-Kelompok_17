@@ -4,8 +4,7 @@ using namespace std;
 
 listCustomer LC;
 
-Customer inputCustomer()
-{
+Customer inputCustomer(){
     Customer c;
     cout << "Nama Customer       : ";
     cin >> c.name;
@@ -16,23 +15,18 @@ Customer inputCustomer()
     return c;
 }
 
-Laundry inputLaundry()
-{
+Laundry inputLaundry(){
     Laundry L;
-    cout << "Nama Laundry        : ";
-    cin >> L.name;
-    cout << "No Telepon          : ";
-    cin >> L.noTlp;
-    cout << "Alamat              : ";
-    cin >> L.alamat;
-    cout << "Berat Pakaian       : ";
-    cin >> L.beratPakaian;
     cout << "Jenis Layanan       : ";
     cin >> L.layanan;
-    cout << "Harga               : ";
-    cin >> L.harga;
+    cout << "Berat Pakaian       : ";
+    cin >> L.beratPakaian;
     cout << "Jumlah Pakaian      : ";
     cin >> L.jumlahPakaian;
+    cout << "Harga               : ";
+    cin >> L.harga;
+    cout << "Status Bayar        : ";
+    cin >> L.statusBayar;
     cout << "Tanggal Masuk       : ";
     cin >> L.tglMasuk;
     cout << "Tanggal Selesai     : ";
@@ -216,7 +210,10 @@ void menuAdmin(listCustomer &LC)
                         deleteFirstLaundry(C, P);
                         if (P != nullptr)
                         {
-                            cout << "Laundry dengan nama " << P->info.name << " telah dihapus." << "dan layanan " << P->info.layanan << "Telah dihapus.\n";
+                            cout << "Laundry dengan layanan "
+                                 << P->info.layanan
+                                 << " (tgl masuk " << P->info.tglMasuk
+                                 << ") telah dihapus.\n";
                         }
                     }
                     else if (pilih2 == 2)
@@ -224,7 +221,10 @@ void menuAdmin(listCustomer &LC)
                         deleteLastLaundry(C, P);
                         if (P != nullptr)
                         {
-                            cout << "Laundry dengan nama " << P->info.name << " telah dihapus." << "dan layanan " << P->info.layanan << "Telah dihapus.\n";
+                            cout << "Laundry dengan layanan "
+                                 << P->info.layanan
+                                 << " (tgl masuk " << P->info.tglMasuk
+                                 << ") telah dihapus.\n";
                         }
                     }
                     else if (pilih2 == 3)
@@ -251,9 +251,10 @@ void menuAdmin(listCustomer &LC)
 
                             if (P != nullptr)
                             {
-                                cout << "Laundry dengan nama " << P->info.name
-                                     << " dan layanan " << P->info.layanan
-                                     << " telah dihapus.\n";
+                                cout << "Laundry dengan layanan "
+                                     << P->info.layanan
+                                     << " (tgl masuk " << P->info.tglMasuk
+                                     << ") telah dihapus.\n";
                             }
                         }
                     }

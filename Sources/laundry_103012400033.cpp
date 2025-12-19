@@ -58,23 +58,41 @@ void deleteAfterLaundry(addressCustomer &C, addressLaundry Prec, addressLaundry 
 
 
 void menampilkanLaundryLayanan(listCustomer L, string layanan) {
-
     addressCustomer C = L.first;
+    bool ditemukan = false;
+
+    cout << "\n===== DAFTAR LAUNDRY DENGAN LAYANAN: "
+         << layanan << " =====\n";
+    cout << "============================================\n";
+
     while (C != nullptr) {
-        addressLaundry L = C->firstLaundry;
-        while (L != nullptr) {
-            if (L->info.layanan == layanan) {
-                cout << "Customer: " << C->info.name << endl;
-                cout << "Laundry: " << L->info.name 
-                     << " | Layanan: " << L->info.layanan
-                     << " | Berat: " << L->info.beratPakaian << endl;
-                cout << "--------------------------" << endl;
+        addressLaundry Ld = C->firstLaundry;
+
+        while (Ld != nullptr) {
+            if (Ld->info.layanan == layanan) {
+                ditemukan = true;
+
+                cout << "Customer       : " << C->info.name << endl;
+                cout << "Layanan        : " << Ld->info.layanan << endl;
+                cout << "Berat (kg)     : " << Ld->info.beratPakaian << endl;
+                cout << "Jumlah Pakaian : " << Ld->info.jumlahPakaian << endl;
+                cout << "Harga          : Rp" << Ld->info.harga << endl;
+                cout << "Status Bayar   : " << Ld->info.statusBayar << endl;
+                cout << "Tgl Masuk      : " << Ld->info.tglMasuk << endl;
+                cout << "Tgl Selesai    : " << Ld->info.tglSelesai << endl;
+                cout << "--------------------------------------------\n";
             }
-            L = L->next;
+            Ld = Ld->next;
         }
         C = C->next;
     }
+
+    if (!ditemukan) {
+        cout << "Tidak ada laundry dengan layanan tersebut.\n";
+        cout << "============================================\n";
+    }
 }
+
 
 addressLaundry laundryByLayanan(listCustomer L, string layanan) {
     addressCustomer C = L.first;
