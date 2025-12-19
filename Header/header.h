@@ -16,12 +16,10 @@ struct Customer {
 };
 
 struct Laundry {
-    string name;
-    string noTlp;
-    string alamat;
     int beratPakaian;
     string layanan;
     int harga;
+    string statusBayar;
     int jumlahPakaian;
     string tglMasuk;
     string tglSelesai;
@@ -77,8 +75,8 @@ void printLaundry(addressCustomer C);
 
 //study case
 void insertCustomerByCondition(listCustomer &LC);
-void deleteCustomerByName(listCustomer &LC);
-void insertLaundryByCustomer(listCustomer &LC);
+void deleteCustomerByLaundry(listCustomer &LC);
+void buatPesananLaundryLangsungBayar(listCustomer &LC);
 void deleteLaundryByService(listCustomer &LC);
 int hitungTotalPendapatan(listCustomer L);
 int totalLaundrySelesai(listCustomer LC, string tgl);
