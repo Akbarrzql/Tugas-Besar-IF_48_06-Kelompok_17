@@ -210,10 +210,7 @@ void menuAdmin(listCustomer &LC)
                         deleteFirstLaundry(C, P);
                         if (P != nullptr)
                         {
-                            cout << "Laundry dengan layanan "
-                                 << P->info.layanan
-                                 << " (tgl masuk " << P->info.tglMasuk
-                                 << ") telah dihapus.\n";
+                            cout << "Laundry dengan layanan " << P->info.layanan << " (tgl masuk " << P->info.tglMasuk << ") telah dihapus.\n";
                         }
                     }
                     else if (pilih2 == 2)
@@ -221,10 +218,7 @@ void menuAdmin(listCustomer &LC)
                         deleteLastLaundry(C, P);
                         if (P != nullptr)
                         {
-                            cout << "Laundry dengan layanan "
-                                 << P->info.layanan
-                                 << " (tgl masuk " << P->info.tglMasuk
-                                 << ") telah dihapus.\n";
+                            cout << "Laundry dengan layanan "<< P->info.layanan<< " (tgl masuk " << P->info.tglMasuk<< ") telah dihapus.\n";
                         }
                     }
                     else if (pilih2 == 3)
@@ -241,8 +235,7 @@ void menuAdmin(listCustomer &LC)
 
                         else if (Prec->next == nullptr)
                         {
-                            cout << "Tidak ada laundry setelah layanan '"
-                                 << Prec->info.layanan << "'.\n";
+                            cout << "Tidak ada laundry setelah layanan '"<< Prec->info.layanan << "'.\n";
                         }
 
                         else
@@ -251,10 +244,7 @@ void menuAdmin(listCustomer &LC)
 
                             if (P != nullptr)
                             {
-                                cout << "Laundry dengan layanan "
-                                     << P->info.layanan
-                                     << " (tgl masuk " << P->info.tglMasuk
-                                     << ") telah dihapus.\n";
+                                cout << "Laundry dengan layanan "<< P->info.layanan<< " (tgl masuk " << P->info.tglMasuk<< ") telah dihapus.\n";
                             }
                         }
                     }

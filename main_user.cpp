@@ -8,15 +8,15 @@ void menuStudyCase(listCustomer &LC) {
 
     while (run) {
         cout << "\n===== MENU STUDY CASE =====\n";
-        cout << "1. Insert Customer berdasarkan jika nama customer sudah ada\n"; //studi kasus insert berdasarkan kondisi
+        cout << "1. Insert Customer berdasarkan jika nama customer belum ada\n"; //studi kasus insert berdasarkan kondisi
         cout << "2. Hapus Customer berdasarkan tidak ada laundry\n"; // studi kasus delete berdasarkan kondisi
-        cout << "3. Insert Laundry berdasarkan status pembayaran\n"; //studi kasus insert laundry ke customer tertentu
+        cout << "3. Insert Laundry berdasarkan status pembayaran langsung lunas\n"; //studi kasus insert laundry ke customer tertentu
         cout << "4. Hapus Laundry berdasarkan layanan yang selesai dan lunas\n"; //studi kasus delete laundry berdasarkan layanan
         cout << "5. Hitung Total Pendapatan (Komputasi)\n"; //menghitung total pendapatan dari semua laundry
         cout << "6. Hitung Total Laundry Selesai (Komputasi)\n"; //menghitung total laundry yang selesai pada tanggal tertentu
         cout << "7. Cari Customer berdasarkan nama\n"; // studi kasus mencari customer berdasarkan kondisi
-        cout << "8. Tampilkan semua Customer\n"; //studi kasus menampilkan semua customer beserta laundrysnya
-        cout << "9. Tampilkan semua Laundry Berdasarkan Nama\n"; //studi kasus menampilkan semua laundry dengan layanan unik
+        cout << "8. Tampilkan semua Customer\n"; //studi kasus menampilkan semua customer 
+        cout << "9. Tampilkan semua Laundry Berdasarkan Nama\n"; //studi kasus menampilkan semua laundry dengan layanan 
         cout << "10. Menampilan semua Customer dengan Layanan Laundry yang dimiliki\n"; 
         cout << "0. Kembali\n";
         cout << "Pilih: ";
@@ -82,13 +82,14 @@ void menuStudyCase(listCustomer &LC) {
             printLaundry(C);
         }
 
+        else if (pilih == 10) {
+            printAllCustomerWithLaundry(LC);
+        }
+
         else if (pilih == 0) {
             run = false;
         }
 
-        else if (pilih == 10) {
-            printAllCustomerWithLaundry(LC);
-        }
         else {
             cout << "Pilihan tidak valid!\n";
         }

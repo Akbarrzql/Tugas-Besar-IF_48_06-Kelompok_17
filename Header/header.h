@@ -12,7 +12,6 @@ struct Customer {
     string name;
     string noTlp;
     string alamat;
-    //ada wallet tambahan yang nantinya bisa di top up dan digunnakan untuk membayar laundry
 };
 
 struct Laundry {
@@ -23,7 +22,6 @@ struct Laundry {
     int jumlahPakaian;
     string tglMasuk;
     string tglSelesai;
-    // opsi tambahin tanggal masuk sama selesai
 };
 
 struct elmList_Customer {
@@ -85,8 +83,6 @@ void tampilkanCustomerByLayanan(listCustomer L, string layanan);
 void menampilkanLaundryLayanan(listCustomer C, string layanan);
 addressLaundry laundryByLayanan(listCustomer L, string layanan);
 
-//dua komputasi di child dan parent 
-
 //function main and menu
 void menuStudyCase(listCustomer &LC);
 void menuUser(listCustomer &LC);
@@ -95,19 +91,6 @@ void mainMenu(listCustomer &LC);
 void printAllCustomerWithLaundry(listCustomer LC);
 Customer inputCustomer();
 Laundry inputLaundry();
-
-
-//bisa study case dengan tanggal yang di tambahin di child laundry
-/*
-- sorting berdasarkan tanggal selesai terdekat
-- menampilkan berdasarkan hari
-- menyelesaikan layanan laundry customer (UI Laundry)
-- menampilkan laundry berdasarkan customer 
-- menambahkan top up wallet customer 
-- membuat pesanan laundry yang langsung yang dibayar
-- menampilkan profil customer seperti nama, harga, noTlp
-- edit profile customer
-*/
 
 
 #endif
