@@ -58,17 +58,24 @@ void deleteCustomerByLaundry(listCustomer &LC) {
     cin >> nama;
 
     addressCustomer P = nullptr;
+    bool bolehHapus = true;    
+    bool ditemukan = false;  
 
     if (LC.first != nullptr && LC.first->info.name == nama) {
+        ditemukan = true;
+
         if (LC.first->firstLaundry != nullptr) {
             cout << "Customer masih memiliki laundry. Tidak dapat dihapus.\n";
-            return;
+            bolehHapus = false;
         }
 
-        deleteFirstCustomer(LC, P);
+        if (bolehHapus) {
+            deleteFirstCustomer(LC, P);
+        }
     }
     else {
         addressCustomer prec = LC.first;
+
         while (prec != nullptr &&
                prec->next != nullptr &&
                prec->next->info.name != nama) {
@@ -76,22 +83,27 @@ void deleteCustomerByLaundry(listCustomer &LC) {
         }
 
         if (prec != nullptr && prec->next != nullptr) {
+            ditemukan = true;
+
             if (prec->next->firstLaundry != nullptr) {
                 cout << "Customer masih memiliki laundry. Tidak dapat dihapus.\n";
-                return;
+                bolehHapus = false;
             }
 
-            deleteAfterCustomer(LC, prec, P);
+            if (bolehHapus) {
+                deleteAfterCustomer(LC, prec, P);
+            }
         }
     }
-
+    
     if (P != nullptr) {
         cout << "Customer '" << nama << "' berhasil dihapus.\n";
     }
-    else {
+    else if (!ditemukan) {
         cout << "Customer tidak ditemukan.\n";
     }
 }
+
 
 
 addressCustomer searchCustomer(listCustomer L, string nama){
